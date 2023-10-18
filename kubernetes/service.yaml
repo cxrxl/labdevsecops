@@ -9,7 +9,8 @@ spec:
   selector:
     app: flask
   ports:
-  - port: 8001
-    targetPort: 30000
+  - port: 8081
+  #8081
+  #  targetPort: 30000
     nodePort: 30013 
     #generacion del puerto de acceso  CD kubernetes
