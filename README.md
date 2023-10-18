@@ -1,2 +1,0 @@
-# labdevsecops
-curso de DevSecOps
