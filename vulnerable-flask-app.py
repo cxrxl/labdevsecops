@@ -226,9 +226,4 @@ def uploadfile():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=8081)
-#STEP1
-#STEP2
-#STEP3 implementacion del documento
-#step4
-#STEP5
-#step6
+#STEP7
