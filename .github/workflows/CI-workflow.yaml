@@ -62,4 +62,4 @@ jobs:
           git config  user.email "cynthia.bernal.edu@groupe-gema.com"
           git config  user.name "cxrxl"
           git commit -a -m 'Env file is updated with the new image ${{ github.ref_name }}'
-          git push https://${{ secrets.GITLEAKS }}@github.com/cxrxl/devsecopslab.git
+          git push https://${{ secrets.GITLEAKS }}@github.com/cxrxl/labdevsecops.git
