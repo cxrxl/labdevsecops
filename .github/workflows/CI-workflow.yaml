@@ -25,7 +25,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python3 -m pip install semgrep
-          if [ -f ./requirement.txt ]; then pip install -r ./requirement.txt; fi
+          if [ -f ./requirements.txt ]; then pip install -r ./requirements.txt; fi
 
       
       - name: Set up Docker Buildx
@@ -62,4 +62,4 @@ jobs:
           git config  user.email "cynthia.bernal.edu@groupe-gema.com"
           git config  user.name "${{ github.actor }}"
           git commit -a -m 'Env file is updated with the new image ${{ github.ref_name }}'
-          git push https://${{ secrets.GITLEAKS }}@github.com/cxrxl/labsecopslab.git
+          git push https://${{ secrets.GITLEAKS }}@github.com/cxrxl/devsecopslab.git
