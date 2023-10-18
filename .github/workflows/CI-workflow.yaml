@@ -59,7 +59,8 @@ jobs:
       
       - name: Edit manifests in ENV repo"
         run: |
-        yq eval -i '.spec.template.spec.containers[0].image = "cxrxl/devsecopslab:v${{ github.run_number }}"' ./kubernetes/deployment.yaml
+         yq eval -i '.spec.template.spec.containers[0].image = "cxrxl/devsecopslab:v${{ github.run_number }}"' ./kubernetes/deployment.yaml
+      
       - name: Commit and Push to ENV repo
         run: |
           git config  user.email "cynthia.bernal.edu@groupe-gema.com"
