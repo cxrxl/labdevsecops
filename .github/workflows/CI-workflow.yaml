@@ -14,7 +14,7 @@ jobs:
         python-version: ["3.10"]
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           ref: '${{ github.ref_name }}'
           token: ${{ secrets.GITLEAKS }}
@@ -47,7 +47,7 @@ jobs:
           docker push <cxrxl/devsecopslab>:v${{ github.run_number }}
 
       - name: Checkout the ENV Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: '<cxrxl/devsecopslab>'
           ref: 'main'
@@ -55,7 +55,7 @@ jobs:
 
       - name: Set up YQ command
         run: |
-          wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64.tar.gz -O - | sudo tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
+          wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64.tar.gz -O - |  tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
 
       - name: Edit manifests in ENV repo
         run: |
