@@ -230,4 +230,4 @@ if __name__ == '__main__':
 #STEP2
 #STEP3 implementacion del documento
 #step4
-#STEP5
+#STEP5 5.2
