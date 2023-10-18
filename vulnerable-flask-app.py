@@ -11,7 +11,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
 @app.route("/")
 def main_page():
-    return "Hello welcome to DevSecOps Lab"
+    return "Hello welcome to DevSecOps Lab xD"
 
 @app.route("/user/<string:name>")
 def search_user(name):
