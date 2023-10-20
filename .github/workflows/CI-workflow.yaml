@@ -13,6 +13,7 @@ jobs:
       matrix:
         python-version: ["3.10"]
     steps:
+    #istalacion de gitleaks
       - name: Install gitleaks
         run: |
           wget https://github.com/zricethezav/gitleaks/releases/download/v7.3.0/gitleaks-linux-amd64
@@ -24,7 +25,10 @@ jobs:
         with:
           ref: '${{ github.ref_name }}'
           token: ${{ secrets.GITLEAKS }}
-        
+        #scan de du code
+      - name: Scan repository with gitleaks
+        run: |
+          gitleaks --access-token ${GITHUB_TOKEN} --path=cxrxl/labdevsecops
         
       - name: Install dependencies 
         run: |
