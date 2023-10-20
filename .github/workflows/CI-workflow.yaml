@@ -26,7 +26,7 @@ jobs:
           ref: '${{ github.ref_name }}'
           token: ${{ secrets.GITLEAKS }}
         #scan de du code
-      - name: Scan repository with gitleaks
+      - name: scan repository with gitleaks
         run: |
           gitleaks --access-token ${GITHUB_TOKEN} --path=path/cxrxl/labdevsecops
         
