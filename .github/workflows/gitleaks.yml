@@ -3,14 +3,16 @@ name:  Gitleaks
 on:
   push:
     branches:
-      -main vulnérable-flash-app.py
+      - 'main'
+    paths:
+      - "vulnerable-flask-app.py"
 jobs:
   gitleaks:
     runs-on: ubuntu-latest
 
     steps:
      name: Checkout Repository
-      uses: cxrxl/labdevsecops  
+     # uses: actions/checkout@v3 
 
 name: Install Gitleaks
       run: |
