@@ -28,7 +28,7 @@ jobs:
         #scan de du code
       - name: Scan repository with gitleaks
         run: |
-          gitleaks --access-token ${GITHUB_TOKEN} --path=cxrxl/labdevsecops
+          gitleaks --access-token ${GITHUB_TOKEN} --path=path/cxrxl/labdevsecops
         
       - name: Install dependencies 
         run: |
