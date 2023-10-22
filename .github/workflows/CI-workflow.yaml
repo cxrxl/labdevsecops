@@ -19,24 +19,27 @@ jobs:
         with:
           ref: '${{ github.ref_name }}'
           token: ${{ secrets.GITLEAKS }}
-    
-    
-        #scan de du code
-      - name: scan repository with gitleaks
-      run: |
-     gitleaks --access-token ${GITHUB_TOKEN} --path=path/cxrxl/labdevsecops
-      - name: Run Gitleaks Scan
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITLEAKS }}
-        run: |
-          docker run --rm -v "$(pwd):/code" zricethezav/gitleaks
           
+      - name: Install Gitleaks
+        run: |
+          curl -sSfl https://github.com/zricethezav/gitleaks/releases/latest/download/gitleaks-linux-amd64 --output gitleaks
+          chmod +x gitleaks
+          sudo mv gitleaks /usr/local/bin/
+          gitleaks --verbose
+                
       - name: Install dependencies 
         run: |
           python -m pip install --upgrade pip
           python3 -m pip install semgrep
           if [ -f ./requirements.txt ]; then pip install -r ./requirements.txt; fi
 
+        #scan de du code
+      - name: Run Gitleaks Scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITLEAKS }}
+        run: |
+          docker run --rm -v "$(pwd):/code" zricethezav/gitleaks
+        
       - name: Install Semgrep
         run: |
           pip install semgrep
@@ -46,8 +49,26 @@ jobs:
         run: |
           semgrep 'vulnerable-flask-app.py'
         working-directory: ${{ github.workspace }}
+      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+        
+      - name: Install Trivy
+        run: |
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.tar.gz
+          tar zxvf trivy_0.18.3_Linux-64bit.tar.gz
+          sudo mv trivy /usr/local/bin/
+          trivy --version
+
+      - name: Scan Image with Trivy
+        run: |
+          trivy image test_${{ github.run_number }}:v1
+        working-directory: .
+      
+      - name: Save Scan Results
+        run: |
+          trivy image --format json --output trivy_results.json test_${{ github.run_number }}:v1
+        working-directory: .
 
       - name: Build image from Dockerfile
         run: |
