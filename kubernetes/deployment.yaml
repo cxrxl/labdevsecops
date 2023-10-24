@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: cxrxl/devsecopslab:v21
+          image: cxrxl/devsecopslab:v26
           resources:
             requests:
               memory: "50Mi"
