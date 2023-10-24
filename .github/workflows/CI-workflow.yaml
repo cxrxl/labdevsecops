@@ -60,11 +60,11 @@ jobs:
           sudo mv trivy /usr/local/bin/
           trivy --version
 
-      - name: Scan Image with Trivy
+      - name: Run Trivy Vulnerability Scan
         run: |
-          trivy image test_${{ github.run_number }}:v1
-        working-directory: .
-      
+          docker run --rm -v $(pwd):/scan aquasec/trivy image cxrxl/devsecopslab:v18
+        working-directory: ${{ github.workspace }}
+        
       - name: Save Scan Results
         run: |
           trivy image --format json --output trivy_results.json test_${{ github.run_number }}:v1
